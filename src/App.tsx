@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { SectionCategories } from 'components'
+
+const mockData = [
+  {
+    id: String(1),
+    action: 'Example',
+    title: 'hats',
+    urlImageBackground: 'https://i.ibb.co/cvpntL1/hats.png'
+  },
+  {
+    id: String(2),
+    action: 'Example',
+    title: 'jackets',
+    urlImageBackground: 'https://i.ibb.co/px2tCc3/jackets.png'
+  },
+  {
+    id: String(3),
+    action: 'Example',
+    title: 'sneakers',
+    urlImageBackground: 'https://i.ibb.co/0jqHpnp/sneakers.png'
+  },
+  {
+    id: String(4),
+    action: 'Example',
+    title: 'womens',
+    urlImageBackground: 'https://i.ibb.co/GCCdy8t/womens.png'
+  },
+  {
+    id: String(5),
+    action: 'Example',
+    title: 'mens',
+    urlImageBackground: 'https://i.ibb.co/R70vBrQ/men.png'
+  }
+]
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SectionCategories categories={mockData} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

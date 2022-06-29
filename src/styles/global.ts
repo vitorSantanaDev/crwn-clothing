@@ -17,6 +17,11 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
   }
 
+	a {
+		color: #090809;
+		text-decoration: none;
+	}
+
   html, body {
     height: 100%;
   }

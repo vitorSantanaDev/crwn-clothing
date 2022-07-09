@@ -21,12 +21,21 @@ export const ButtonElement = styled.button<ButtonProps>`
   border: none;
   cursor: pointer;
   display: flex;
+  align-items: center;
   justify-content: center;
 
   &:hover {
     background-color: white;
     color: black;
     border: 1px solid black;
+  }
+  &:disabled {
+    cursor: not-allowed;
+
+    &:hover {
+      color: white;
+      background-color: black;
+    }
   }
 
   ${({ buttonTypeStyle }) =>

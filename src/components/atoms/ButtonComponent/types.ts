@@ -13,7 +13,9 @@ export enum ButtonTypeStyleEnum {
 }
 
 export interface IButtonProps {
+  disabled?: boolean
   children: ReactNode
   type?: ButtonTypeEnum
   buttonTypeStyle?: ButtonTypeStyleEnum
+  handleClick?: () => void
 }

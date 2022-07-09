@@ -15,7 +15,7 @@ export default function Header() {
         <Link to={routesName.SHOP} className="navLink">
           Shop
         </Link>
-        <Link to={routesName.LOGIN} className="navLink">
+        <Link to={routesName.AUTHENTICATION} className="navLink">
           Sign In
         </Link>
       </S.NavigationWrapper>

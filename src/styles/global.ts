@@ -25,4 +25,11 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
   }
+
+	.errorMessage {
+		margin-bottom: 16px;
+		display: inline-block;
+		font-size: 16px;
+		color: #eb4034;
+	}
 `

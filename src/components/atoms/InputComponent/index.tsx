@@ -18,7 +18,11 @@ export default function InputComponent({
         className="input"
         placeholder={placeholder}
       />
-      <ErrorMessage name={name} component={errorComponent} />
+      <ErrorMessage
+        name={name}
+        className="errorMessage"
+        component={errorComponent}
+      />
     </S.InputWrapper>
   )
 }

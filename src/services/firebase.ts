@@ -7,7 +7,8 @@ import {
   Auth,
   UserCredential,
   User,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from 'firebase/auth'
 
 import {
@@ -81,4 +82,13 @@ export async function createUser(
   if (!email || !password) return
 
   return await createUserWithEmailAndPassword(auth, email, password)
+}
+
+export async function sigInAuthUser(
+  email: string,
+  password: string
+): Promise<UserCredential | undefined> {
+  if (!email || !password) return
+
+  return await signInWithEmailAndPassword(auth, email, password)
 }

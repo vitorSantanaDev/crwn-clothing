@@ -1,13 +1,15 @@
 import { Fragment, useState } from 'react'
 import { UserCredential } from 'firebase/auth'
-import { Form, Formik, FormikValues } from 'formik'
+import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
+import { toast } from 'react-toastify'
 
 import { createUser, createUserDocumentFromAuth } from 'services/firebase'
 
-import registrationFormValidation from 'schemas/signUpForm'
+import { registrationFormValidation } from 'schemas'
+import { errorMessages, successMessages } from 'utils'
 
-import { ButtonComponent, InputComponent } from 'components/atoms'
 import { ButtonTypeEnum } from 'components/atoms/ButtonComponent/types'
+import { ButtonComponent, InputComponent, Loading } from 'components/atoms'
 
 import * as S from './styles'
 
@@ -47,9 +49,8 @@ const fieldsForm = [
 ]
 
 export default function SignUpForm() {
-  const [defaultValueFields, setDeafaultValueFields] = useState(
-    setInitialValuesFields()
-  )
+  const [loading, setLoading] = useState(false)
+  const [defaultValueFields] = useState(setInitialValuesFields())
 
   function setInitialValuesFields() {
     return fieldsForm.reduce((acc, field) => {
@@ -60,14 +61,23 @@ export default function SignUpForm() {
     }, {})
   }
 
-  async function handleSubmit(values: FormikValues) {
+  async function handleSubmit(
+    values: FormikValues,
+    { resetForm }: FormikHelpers<FormikValues>
+  ) {
     const { displayName, email, password } = values
 
     try {
+      setLoading(true)
       const { user } = (await createUser(email, password)) as UserCredential
       await createUserDocumentFromAuth(user, { displayName })
-      setDeafaultValueFields(setInitialValuesFields())
+      setLoading(false)
+
+      toast.success(successMessages.USER_CREATED_SUCCESSFULLY)
+      resetForm({ values: setInitialValuesFields() })
     } catch (err) {
+      setLoading(false)
+      toast.error(errorMessages.EMAIL_ALREADY_IN_USE)
       console.error(err)
     }
   }
@@ -92,7 +102,9 @@ export default function SignUpForm() {
               />
             </Fragment>
           ))}
-          <ButtonComponent type={ButtonTypeEnum.SUBMIT}>Enviar</ButtonComponent>
+          <ButtonComponent disabled={loading} type={ButtonTypeEnum.SUBMIT}>
+            {loading ? <Loading /> : 'Enviar'}
+          </ButtonComponent>
         </Form>
       </Formik>
     </S.FormWrapper>

@@ -6,8 +6,7 @@ const REGEX_EMAIL =
 
 const REGEX_PASSWORD = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
 
-export const registrationFormValidation = yup.object().shape({
-  displayName: yup.string().required(errorMessages.REQUIRED_FIELD),
+export const signInFormValidation = yup.object().shape({
   email: yup
     .string()
     .email()
@@ -16,9 +15,5 @@ export const registrationFormValidation = yup.object().shape({
   password: yup
     .string()
     .matches(REGEX_PASSWORD, errorMessages.INVALID_PASSWORD)
-    .required(errorMessages.REQUIRED_FIELD),
-  confirmPassword: yup
-    .string()
     .required(errorMessages.REQUIRED_FIELD)
-    .oneOf([yup.ref('password')], errorMessages.PASSWORDS_DO_NOT_MATCH)
 })

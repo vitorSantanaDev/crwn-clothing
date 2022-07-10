@@ -2,11 +2,7 @@ import { Fragment, useState } from 'react'
 import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
 import { toast } from 'react-toastify'
 
-import {
-  createUserDocumentFromAuth,
-  sigInWithGooglePopup,
-  sigInAuthUser
-} from 'services/firebase'
+import { sigInWithGooglePopup, sigInAuthUser } from 'services/firebase'
 
 import { signInFormValidation } from 'schemas'
 import { errorMessages } from 'utils'
@@ -42,8 +38,7 @@ export default function SignInForm() {
   const [defaultValueFields] = useState(setInitialValuesFields())
 
   async function signInWithGoogle() {
-    const { user } = await sigInWithGooglePopup()
-    await createUserDocumentFromAuth(user)
+    await sigInWithGooglePopup()
   }
 
   function setInitialValuesFields() {
@@ -64,9 +59,10 @@ export default function SignInForm() {
       const { email, password } = values
 
       await sigInAuthUser(email, password)
-      setLoading(false)
 
+      setLoading(false)
       resetForm({ values: setInitialValuesFields() })
+      return
     } catch (err) {
       setLoading(false)
       const error = err as { code: string }

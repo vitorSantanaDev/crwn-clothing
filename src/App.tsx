@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react'
 import { ToastContainer } from 'react-toastify'
-import RoutesApp from 'routes/index.routes'
-
 import 'react-toastify/dist/ReactToastify.min.css'
+
+import RoutesApp from 'routes/index.routes'
+import { UserContextProvider } from 'contexts/UserContext'
 
 function App() {
   return (
     <Fragment>
-      <RoutesApp />
-      <ToastContainer />
+      <UserContextProvider>
+        <RoutesApp />
+        <ToastContainer />
+      </UserContextProvider>
     </Fragment>
   )
 }

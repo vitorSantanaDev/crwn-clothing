@@ -71,6 +71,7 @@ export default function SignUpForm() {
       setLoading(true)
       const { user } = (await createUser(email, password)) as UserCredential
       await createUserDocumentFromAuth(user, { displayName })
+
       setLoading(false)
 
       toast.success(successMessages.USER_CREATED_SUCCESSFULLY)

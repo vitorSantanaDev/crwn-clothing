@@ -8,7 +8,9 @@ import {
   UserCredential,
   User,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from 'firebase/auth'
 
 import {
@@ -91,4 +93,15 @@ export async function sigInAuthUser(
   if (!email || !password) return
 
   return await signInWithEmailAndPassword(auth, email, password)
+}
+
+export async function signOutUser(): Promise<void> {
+  return await signOut(auth)
+}
+
+export async function onAuthStateChangedListiner(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callback: (user: any) => void
+) {
+  return onAuthStateChanged(auth, callback)
 }

@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+		padding: 20px 40px;
     font-family: 'Open Sans', sans-serif;
   }
 

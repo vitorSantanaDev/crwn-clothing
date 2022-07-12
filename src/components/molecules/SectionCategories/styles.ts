@@ -1,10 +1,12 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const CategoriesWrapper = styled.section`
-  ${() => css`
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  `}
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `

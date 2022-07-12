@@ -1,7 +1,8 @@
 const routesName = {
   HOME: '/',
   SHOP: '/shop',
-  AUTHENTICATION: '/authentication'
+  AUTHENTICATION: '/authentication',
+  CHECKOUT: '/checkout'
 }
 
 export default routesName

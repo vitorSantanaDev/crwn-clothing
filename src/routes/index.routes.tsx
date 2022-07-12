@@ -1,13 +1,18 @@
-import React, { createElement } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { createElement, useContext } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+
+import { UserContext } from 'contexts'
 
 import { PageComponent } from 'components'
 
 import { routesData } from './data.routes'
+import routesName from './enum.routes'
 
 import { AccessTypeEnum } from './type.routes'
 
 export default function RoutesApp() {
+  const { user } = useContext(UserContext)
+
   return (
     <BrowserRouter>
       <Routes>
@@ -28,7 +33,11 @@ export default function RoutesApp() {
                   }
                 />
               )
-            } else if (requirePermission) {
+            } else if (
+              requirePermission &&
+              !accessType.includes(AccessTypeEnum.PUBLIC) &&
+              user
+            ) {
               return (
                 <Route
                   key={key}
@@ -41,7 +50,13 @@ export default function RoutesApp() {
                 />
               )
             }
-            return null
+            return (
+              <Route
+                path="*"
+                key={routesName.AUTHENTICATION}
+                element={<Navigate to={routesName.AUTHENTICATION} replace />}
+              />
+            )
           }
         )}
       </Routes>

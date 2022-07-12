@@ -1,4 +1,4 @@
-import { Home, Shop, Authentication } from 'pages'
+import { Home, Shop, Authentication, Checkout } from 'pages'
 
 import routesName from './enum.routes'
 
@@ -31,5 +31,14 @@ export const routesData: IRouterData[] = [
     path: routesName.SHOP,
     requirePermission: false,
     accessType: [AccessTypeEnum.PUBLIC, AccessTypeEnum.USER]
+  },
+  {
+    name: 'Checkout',
+    header: true,
+    component: Checkout,
+    key: routesName.CHECKOUT,
+    path: routesName.CHECKOUT,
+    requirePermission: true,
+    accessType: [AccessTypeEnum.USER]
   }
 ]

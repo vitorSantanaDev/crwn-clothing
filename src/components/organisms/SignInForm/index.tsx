@@ -4,8 +4,9 @@ import { toast } from 'react-toastify'
 
 import { sigInWithGooglePopup, sigInAuthUser } from 'services/firebase'
 
-import { signInFormValidation } from 'schemas'
 import { errorMessages } from 'utils'
+import { signInFormValidation } from 'schemas'
+
 import { ButtonComponent, InputComponent, Loading } from 'components/atoms'
 import {
   ButtonTypeEnum,
@@ -62,6 +63,8 @@ export default function SignInForm() {
 
       setLoading(false)
       resetForm({ values: setInitialValuesFields() })
+      window.history.back()
+
       return
     } catch (err) {
       setLoading(false)

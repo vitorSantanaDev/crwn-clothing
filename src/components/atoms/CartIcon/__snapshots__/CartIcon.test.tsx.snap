@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonComponent /> should match snapshot 1`] = `
+<div
+  class="sc-bczRLJ koYlEn"
+>
+  <svg
+    class="shoppingIcon"
+  >
+    shopping-bag.svg
+  </svg>
+  <span
+    class="sc-gsnTZi ccslnz"
+  >
+    0
+  </span>
+</div>
+`;

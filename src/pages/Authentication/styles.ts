@@ -1,15 +1,13 @@
 import styled from 'styled-components'
 
 export const PageWrapper = styled.main`
-  width: 900px;
+  width: 100%;
   display: flex;
-  margin: 30px auto;
-  justify-content: space-between;
+  justify-content: space-around;
 
   @media screen and (max-width: 768px) {
-    width: fit-content;
+    gap: 40px;
     flex-direction: column;
     justify-content: center;
-    gap: 40px;
   }
 `

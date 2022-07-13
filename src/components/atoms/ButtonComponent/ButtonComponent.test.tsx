@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event'
 
 describe('<ButtonComponent />', () => {
   it('should render the button with default style', () => {
-    render(
+    const { container } = render(
       <ButtonComponent buttonTypeStyle={ButtonTypeStyleEnum.DEFAULT}>
         button Text
       </ButtonComponent>
@@ -20,10 +20,12 @@ describe('<ButtonComponent />', () => {
       'background-color': 'black',
       color: 'white'
     })
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should render the button with google sign in style', () => {
-    render(
+    const { container } = render(
       <ButtonComponent buttonTypeStyle={ButtonTypeStyleEnum.GOOGLE_SIGN_IN}>
         button Text
       </ButtonComponent>
@@ -36,10 +38,12 @@ describe('<ButtonComponent />', () => {
       'background-color': '#4285f4',
       color: 'white'
     })
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should render the button with inverted style', () => {
-    render(
+    const { container } = render(
       <ButtonComponent buttonTypeStyle={ButtonTypeStyleEnum.INVERTED}>
         button Text
       </ButtonComponent>
@@ -53,6 +57,8 @@ describe('<ButtonComponent />', () => {
       color: 'black',
       border: '1px solid black'
     })
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should called the handleClick function when click in the button', () => {

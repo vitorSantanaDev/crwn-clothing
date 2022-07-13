@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonComponent /> should render the button with default style 1`] = `
+<button
+  class="sc-bczRLJ dkIoSW"
+  type="button"
+>
+  button Text
+</button>
+`;
+
+exports[`<ButtonComponent /> should render the button with google sign in style 1`] = `
+<button
+  class="sc-bczRLJ PrSTo"
+  type="button"
+>
+  button Text
+</button>
+`;
+
+exports[`<ButtonComponent /> should render the button with inverted style 1`] = `
+<button
+  class="sc-bczRLJ dvZaef"
+  type="button"
+>
+  button Text
+</button>
+`;

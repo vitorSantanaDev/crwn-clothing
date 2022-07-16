@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CartItem /> should match snapshot 1`] = `
+<div
+  class="sc-bczRLJ ggPchI"
+>
+  <img
+    alt="Brown Brim"
+    class="sc-eCYdqJ isuBik"
+    src="https://i.ibb.co/ZYW3VTp/brown-brim.png"
+  />
+  <div
+    class="sc-gsnTZi cTyJxh"
+  >
+    <h2
+      class="sc-dkzDqf bnRgTK"
+    >
+      Brown Brim
+    </h2>
+    <span
+      class="sc-hKMtZM jFHkdN"
+    >
+      3
+       x $
+      25
+    </span>
+  </div>
+</div>
+`;

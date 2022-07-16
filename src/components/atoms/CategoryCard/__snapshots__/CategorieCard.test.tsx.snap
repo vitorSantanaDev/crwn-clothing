@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CategoryCard /> should match snapshot 1`] = `
+<div
+  class="sc-bczRLJ cfOrxV"
+>
+  <div
+    class="sc-gsnTZi gyuSTl"
+  />
+  <div
+    class="sc-dkzDqf eyHLhi bodyContent"
+  >
+    <h2
+      class="sc-hKMtZM gvJbuC"
+    >
+      Hats
+    </h2>
+    <p
+      class="sc-eCYdqJ UOQJv"
+    >
+      /
+    </p>
+  </div>
+</div>
+`;

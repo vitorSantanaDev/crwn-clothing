@@ -20,8 +20,13 @@ import {
   setDoc,
   Firestore,
   DocumentReference,
-  DocumentData
+  DocumentData,
+  collection,
+  writeBatch,
+  query,
+  getDocs
 } from 'firebase/firestore'
+import { CollectionKeysEnum, IShopData } from 'interfaces'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -49,6 +54,37 @@ export const sigInWithGoogleRedirect = (): Promise<never> =>
   signInWithRedirect(auth, provider)
 
 export const database: Firestore = getFirestore()
+
+export async function addCollectionAndDocuments(
+  collectionKey: string,
+  objectsToAdd: IShopData[]
+): Promise<void> {
+  const collectionRef = collection(database, collectionKey)
+  const batch = writeBatch(database)
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase())
+    batch.set(docRef, object)
+  })
+
+  await batch.commit()
+}
+
+export async function getCategoriesAndDocuments() {
+  const collectionRef = collection(database, CollectionKeysEnum.CATEGORIES)
+  const myQuery = query(collectionRef)
+  const querySnapshot = await getDocs(myQuery)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const categoriesMap = querySnapshot.docs.reduce((acc: any, docSnapshot) => {
+    const { title, items } = docSnapshot.data() as IShopData
+    acc[title.toLowerCase()] = items
+
+    return acc
+  }, {})
+
+  return categoriesMap
+}
 
 export async function createUserDocumentFromAuth(
   userAuth: User,

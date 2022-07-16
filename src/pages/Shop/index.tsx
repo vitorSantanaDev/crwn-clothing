@@ -1,21 +1,30 @@
-import { useContext } from 'react'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Fragment, useContext } from 'react'
 
-import { ProductContext } from 'contexts'
+import { CategoriesContext } from 'contexts'
 
+import { IProduct } from 'interfaces'
 import { Container, ProductCard } from 'components'
 
 import * as S from './styles'
 
 export default function Shop() {
-  const { products } = useContext(ProductContext)
+  const { categories } = useContext(CategoriesContext)
 
   return (
     <Container>
-      <S.ShopWrapper>
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+      {categories &&
+        Object.keys(categories).map((category) => (
+          <Fragment key={category}>
+            <S.CategoryTitle>{category.toLocaleUpperCase()}</S.CategoryTitle>
+            <S.ShopWrapper>
+              {/* @ts-ignore */}
+              {categories[category].map((product: IProduct) => (
+                <ProductCard key={product.id} {...product} />
+              ))}
+            </S.ShopWrapper>
+          </Fragment>
         ))}
-      </S.ShopWrapper>
     </Container>
   )
 }

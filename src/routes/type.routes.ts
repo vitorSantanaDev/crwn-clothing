@@ -10,6 +10,7 @@ export interface IRouterData {
   name: string
   path: string
   header?: boolean
+  parameter?: string
   accessType: AccessTypeEnum[]
   requirePermission: boolean
   component: string | FunctionComponent<{}> | ComponentClass<{}>

@@ -17,7 +17,15 @@ export default function RoutesApp() {
     <BrowserRouter>
       <Routes>
         {routesData.map(
-          ({ component, key, path, requirePermission, header, accessType }) => {
+          ({
+            key,
+            path,
+            header,
+            component,
+            parameter,
+            accessType,
+            requirePermission
+          }) => {
             if (
               !requirePermission &&
               accessType.includes(AccessTypeEnum.PUBLIC)
@@ -41,7 +49,7 @@ export default function RoutesApp() {
               return (
                 <Route
                   key={key}
-                  path={path}
+                  path={parameter ? `${path}/${parameter}` : path}
                   element={
                     <PageComponent includesHeader={header}>
                       {createElement(component)}

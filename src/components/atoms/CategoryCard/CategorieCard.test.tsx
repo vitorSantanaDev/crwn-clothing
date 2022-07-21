@@ -6,6 +6,7 @@ describe('<CategoryCard />', () => {
     render(
       <CategoryCard
         title="Hats"
+        route="/shop/category/hats"
         action="/"
         urlImageBackground="https://i.ibb.co/ypkgK0X/blue-beanie.png"
       />
@@ -17,6 +18,7 @@ describe('<CategoryCard />', () => {
   it('should match snapshot', () => {
     const { container } = render(
       <CategoryCard
+        route="/shop/category/hats"
         title="Hats"
         action="/"
         urlImageBackground="https://i.ibb.co/ypkgK0X/blue-beanie.png"

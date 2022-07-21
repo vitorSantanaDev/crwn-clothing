@@ -3,30 +3,35 @@
     "id": "1",
     "action": "Example",
     "title": "hats",
-    "urlImageBackground": "https://i.ibb.co/cvpntL1/hats.png"
+    "urlImageBackground": "https://i.ibb.co/cvpntL1/hats.png",
+    "route": "/shop/category/hats"
   },
   {
     "id": "2",
     "action": "Example",
     "title": "jackets",
-    "urlImageBackground": "https://i.ibb.co/px2tCc3/jackets.png"
+    "urlImageBackground": "https://i.ibb.co/px2tCc3/jackets.png",
+    "route": "/shop/category/jackets"
   },
   {
     "id": "3",
     "action": "Example",
     "title": "sneakers",
-    "urlImageBackground": "https://i.ibb.co/0jqHpnp/sneakers.png"
+    "urlImageBackground": "https://i.ibb.co/0jqHpnp/sneakers.png",
+    "route": "/shop/category/sneakers"
   },
   {
     "id": "4",
     "action": "Example",
     "title": "womens",
-    "urlImageBackground": "https://i.ibb.co/GCCdy8t/womens.png"
+    "urlImageBackground": "https://i.ibb.co/GCCdy8t/womens.png",
+    "route": "/shop/category/womens"
   },
   {
     "id": "5",
     "action": "Example",
     "title": "mens",
-    "urlImageBackground": "https://i.ibb.co/R70vBrQ/men.png"
+    "urlImageBackground": "https://i.ibb.co/R70vBrQ/men.png",
+    "route": "/shop/category/mens"
   }
 ]

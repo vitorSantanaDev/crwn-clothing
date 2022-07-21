@@ -22,6 +22,7 @@ export default function Category() {
 
   return (
     <Container>
+      <S.CategoryTitle>{category?.toUpperCase()}</S.CategoryTitle>
       <S.CategoryWrapper>
         {products &&
           products.map((product) => (

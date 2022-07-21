@@ -6,3 +6,9 @@ export const CategoryWrapper = styled.main`
   column-gap: 20px;
   row-gap: 50px;
 `
+
+export const CategoryTitle = styled.h2`
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 32px;
+`

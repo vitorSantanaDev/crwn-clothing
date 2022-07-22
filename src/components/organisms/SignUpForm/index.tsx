@@ -85,8 +85,8 @@ export default function SignUpForm() {
 
   return (
     <S.FormWrapper>
-      <S.SignUpTitle>{"Don't have an account?"}</S.SignUpTitle>
-      <S.FormTitle>Sign up with your email and password</S.FormTitle>
+      <S.SignUpTitle>Não possui uma conta?</S.SignUpTitle>
+      <S.FormTitle>Faça seu cadastro</S.FormTitle>
       <Formik
         onSubmit={handleSubmit}
         initialValues={defaultValueFields}

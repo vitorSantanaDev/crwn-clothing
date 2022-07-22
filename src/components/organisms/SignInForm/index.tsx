@@ -76,8 +76,8 @@ export default function SignInForm() {
 
   return (
     <S.FormWrapper>
-      <S.SignUpTitle>Already have an account</S.SignUpTitle>
-      <S.FormTitle>Sign in with your email and password</S.FormTitle>
+      <S.SignUpTitle>Já possui uma conta?</S.SignUpTitle>
+      <S.FormTitle>Entre com seu e-mail e senha</S.FormTitle>
       <Formik
         onSubmit={handleSubmit}
         initialValues={defaultValueFields}
@@ -96,7 +96,7 @@ export default function SignInForm() {
           ))}
           <S.ButtonsWrapper>
             <ButtonComponent disabled={loading} type={ButtonTypeEnum.SUBMIT}>
-              {loading ? <Loading /> : 'Sign In'}
+              {loading ? <Loading /> : 'Entrar'}
             </ButtonComponent>
             <ButtonComponent
               disabled={loading}
@@ -104,7 +104,7 @@ export default function SignInForm() {
               handleClick={signInWithGoogle}
               buttonTypeStyle={ButtonTypeStyleEnum.GOOGLE_SIGN_IN}
             >
-              Google Sign In
+              Google login
             </ButtonComponent>
           </S.ButtonsWrapper>
         </Form>

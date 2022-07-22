@@ -26,7 +26,7 @@ export default function Header() {
       </Link>
       <S.NavigationWrapper>
         <Link to={routesName.SHOP} className="navLink">
-          SHOP
+          Loja
         </Link>
         {user ? (
           <Link
@@ -34,11 +34,11 @@ export default function Header() {
             onClick={signOutHandler}
             to={routesName.AUTHENTICATION}
           >
-            SIGN OUT
+            Sair
           </Link>
         ) : (
           <Link to={routesName.AUTHENTICATION} className="navLink">
-            SIGN IN
+            Entrar
           </Link>
         )}
         <CartIcon />

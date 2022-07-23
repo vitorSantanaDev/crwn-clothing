@@ -1,29 +1,48 @@
-import React, { createContext, ReactNode, useState, useEffect } from 'react'
-import { UserCredential } from 'firebase/auth'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { createContext, ReactNode, useEffect, useReducer } from 'react'
 
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListiner
 } from 'services/firebase'
 
-const initialState = {
+const USER_INITIAL_STATE: { user: any; setUser: any } = {
   user: null,
   setUser: null
 }
 
 export const UserContext = createContext<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setUser: any
-}>(initialState)
+}>(USER_INITIAL_STATE)
 
 export interface UserContextProviderTypes {
   children: ReactNode
 }
 
+const USER_ACTION_TYPES = {
+  SET_CURRENT_USER: `SET_CURRENT_USER`
+}
+
+const userReducer = (state = USER_INITIAL_STATE, action: any) => {
+  const { type, payload } = action
+
+  switch (type) {
+    case USER_ACTION_TYPES.SET_CURRENT_USER: {
+      return { ...state, user: payload }
+    }
+
+    default: {
+      throw new Error(`unhandled type ${type} in userReducer`)
+    }
+  }
+}
+
 export function UserContextProvider({ children }: UserContextProviderTypes) {
-  const [user, setUser] = useState<UserCredential>()
+  const [{ user }, dispatch] = useReducer(userReducer, USER_INITIAL_STATE)
+
+  const setUser = (user: any) =>
+    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user })
 
   useEffect(() => {
     onAuthStateChangedListiner((user) => {

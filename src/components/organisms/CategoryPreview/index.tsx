@@ -1,10 +1,11 @@
 import { ProductCard } from 'components'
+import { Link } from 'react-router-dom'
+
+import routesName from 'routes/enum.routes'
 
 import { ICategoryPreviewProps } from './types'
 
 import * as S from './styles'
-import { Link } from 'react-router-dom'
-import routesName from 'routes/enum.routes'
 
 const CategoryPreview = ({ title, products }: ICategoryPreviewProps) => {
   return (

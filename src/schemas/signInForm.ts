@@ -1,4 +1,4 @@
-import { errorMessages } from 'utils/errorMessages'
+import { errorMessages } from 'utils'
 import * as yup from 'yup'
 
 const REGEX_EMAIL =

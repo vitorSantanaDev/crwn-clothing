@@ -6,6 +6,8 @@ import {
   onAuthStateChangedListiner
 } from 'services/firebase'
 
+import { createAction } from 'utils'
+
 const USER_INITIAL_STATE: { user: any; setUser: any } = {
   user: null,
   setUser: null
@@ -42,7 +44,7 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
   const [{ user }, dispatch] = useReducer(userReducer, USER_INITIAL_STATE)
 
   const setUser = (user: any) =>
-    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user })
+    dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user))
 
   useEffect(() => {
     onAuthStateChangedListiner((user) => {

@@ -2,7 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ToastContainer } from 'react-toastify'
 
-import { UserContextProvider, CategoriesProvider, CartProvider } from 'contexts'
+import { CategoriesProvider, CartProvider } from 'contexts'
+import { store } from 'store/store'
+
+import { Provider } from 'react-redux'
 
 import App from './App'
 
@@ -14,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <React.StrictMode>
-    <UserContextProvider>
+    <Provider store={store}>
       <CategoriesProvider>
         <CartProvider>
           <GlobalStyle />
@@ -22,6 +25,6 @@ root.render(
           <ToastContainer />
         </CartProvider>
       </CategoriesProvider>
-    </UserContextProvider>
+    </Provider>
   </React.StrictMode>
 )

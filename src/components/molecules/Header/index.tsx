@@ -1,18 +1,19 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { CrwnLogo, CartIcon } from 'components/atoms'
 import CartDropDown from '../CartDropDown'
 
 import routesName from 'routes/enum.routes'
 
-import { UserContext, CartContext } from 'contexts'
+import { CartContext } from 'contexts'
 import { signOutUser } from 'services/firebase'
 
 import * as S from './styles'
 
 export default function Header() {
-  const { user } = useContext(UserContext)
+  const user = useSelector((state) => (state as { user: any }).user)
   const { isCartOpen } = useContext(CartContext)
 
   async function signOutHandler() {

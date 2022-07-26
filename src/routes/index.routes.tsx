@@ -1,17 +1,16 @@
-import React, { createElement, useContext } from 'react'
+import React, { createElement } from 'react'
+import { useSelector } from 'react-redux'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-
-import { UserContext } from 'contexts'
 
 import { PageComponent } from 'components'
 
-import { routesData } from './data.routes'
 import routesName from './enum.routes'
+import { routesData } from './data.routes'
 
 import { AccessTypeEnum } from './type.routes'
 
 export default function RoutesApp() {
-  const { user } = useContext(UserContext)
+  const user = useSelector((state) => (state as { user: any }).user)
 
   return (
     <BrowserRouter>

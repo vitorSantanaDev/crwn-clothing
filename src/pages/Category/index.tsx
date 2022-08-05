@@ -1,34 +1,38 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { Container, ProductCard } from 'components'
 
-import { CategoriesContext } from 'contexts'
-
+import { categoriesSelector } from 'store'
 import { IProduct } from 'interfaces'
 
 import * as S from './styles'
 
 export default function Category() {
   const [products, setProducts] = useState<IProduct[]>([])
+
   const { category } = useParams()
-  const { categories } = useContext(CategoriesContext)
+
+  const categories = useSelector(categoriesSelector)
 
   useEffect(() => {
-    //@ts-ignore
-    setProducts(categories[category as string])
-  }, [categories, category])
+    if (categories) setProducts(categories[category as string])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories])
 
-  return (
-    <Container>
-      <S.CategoryTitle>{category?.toUpperCase()}</S.CategoryTitle>
-      <S.CategoryWrapper>
-        {products &&
-          products.map((product) => (
+  if (products) {
+    return (
+      <Container>
+        <S.CategoryTitle>{category?.toUpperCase()}</S.CategoryTitle>
+        <S.CategoryWrapper>
+          {products.map((product: IProduct) => (
             <ProductCard key={product.id} {...product} />
           ))}
-      </S.CategoryWrapper>
-    </Container>
-  )
+        </S.CategoryWrapper>
+      </Container>
+    )
+  }
+  return null
 }

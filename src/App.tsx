@@ -5,10 +5,11 @@ import RoutesApp from 'routes/index.routes'
 
 import {
   createUserDocumentFromAuth,
+  getCategoriesAndDocuments,
   onAuthStateChangedListiner
 } from 'services/firebase'
 
-import { userActions } from './store'
+import { categoriesActions, userActions } from './store'
 
 function App() {
   const dispatch = useDispatch()
@@ -18,6 +19,14 @@ function App() {
       if (user) createUserDocumentFromAuth(user)
       dispatch(userActions.setUser(user))
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    ;(async () => {
+      const categoriesArray = await getCategoriesAndDocuments()
+      dispatch(categoriesActions.setCategories(categoriesArray))
+    })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

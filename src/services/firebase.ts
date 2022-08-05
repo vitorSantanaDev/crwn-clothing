@@ -75,15 +75,7 @@ export async function getCategoriesAndDocuments() {
   const myQuery = query(collectionRef)
   const querySnapshot = await getDocs(myQuery)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const categoriesMap = querySnapshot.docs.reduce((acc: any, docSnapshot) => {
-    const { title, items } = docSnapshot.data() as IShopData
-    acc[title.toLowerCase()] = items
-
-    return acc
-  }, {})
-
-  return categoriesMap
+  return querySnapshot.docs.map((docsSnapshots) => docsSnapshots.data())
 }
 
 export async function createUserDocumentFromAuth(

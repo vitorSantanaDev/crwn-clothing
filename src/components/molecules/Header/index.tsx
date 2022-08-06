@@ -1,9 +1,8 @@
-import { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { userActions, userSelector } from 'store'
-import { CartContext } from 'contexts'
+import { userActions, userSelector, cartStoreSelectors } from 'store'
 import { signOutUser } from 'services/firebase'
 
 import { CrwnLogo, CartIcon } from 'components/atoms'
@@ -15,7 +14,7 @@ import * as S from './styles'
 
 export default function Header() {
   const user = useSelector(userSelector)
-  const { isCartOpen } = useContext(CartContext)
+  const isCartOpen = useSelector(cartStoreSelectors.selectCartIsOpen)
 
   const dispatch = useDispatch()
 

@@ -1,28 +1,32 @@
-import { useContext } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { CartContext } from 'contexts'
+import { cartStoreSelectors, cartStoreActions } from 'store'
 
 import { ButtonTypeStyleEnum } from 'components/atoms/ButtonComponent/types'
 import { ButtonComponent, CartItem } from 'components/atoms'
 
+import { IProductCartItem } from 'interfaces'
 import routesName from 'routes/enum.routes'
 
 import * as S from './styles'
 
 export default function CartDropDown() {
-  const { cartItems, isCartOpen, setIsCartOpen } = useContext(CartContext)
+  const isCartOpen = useSelector(cartStoreSelectors.selectCartIsOpen)
+  const cartItems = useSelector(cartStoreSelectors.selectCartItems)
+  const dispatch = useDispatch()
   const navigation = useNavigate()
 
   const handleNavigationToCheckoutPage = () => {
-    setIsCartOpen?.(!isCartOpen)
+    dispatch(cartStoreActions.setIsCartOpen(!isCartOpen))
     navigation(routesName.CHECKOUT)
   }
 
   return (
     <S.CartDropDownWrapper>
       <S.CartItems>
-        {cartItems.map((item) => (
+        {cartItems.map((item: IProductCartItem) => (
           <CartItem key={item.id} {...item} />
         ))}
       </S.CartItems>

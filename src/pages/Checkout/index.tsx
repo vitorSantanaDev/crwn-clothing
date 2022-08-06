@@ -1,6 +1,8 @@
-import { useContext } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-import { CartContext } from 'contexts'
+import { cartStoreSelectors } from 'store'
+import { IProductCartItem } from 'interfaces'
 
 import { CheckoutItem, Container } from 'components'
 
@@ -15,7 +17,8 @@ const checkoutHeaderTags = [
 ]
 
 export default function Checkout() {
-  const { cartItems, priceTotalItems } = useContext(CartContext)
+  const cartItems = useSelector(cartStoreSelectors.selectCartItems)
+  const priceTotalItems = useSelector(cartStoreSelectors.selectCartTotalPrice)
 
   return (
     <Container>
@@ -28,7 +31,7 @@ export default function Checkout() {
           ))}
         </S.CheckoutHeader>
         <S.CartItemsWrapper>
-          {cartItems.map((cartItem) => {
+          {cartItems.map((cartItem: IProductCartItem) => {
             return <CheckoutItem key={cartItem.id} {...cartItem} />
           })}
         </S.CartItemsWrapper>

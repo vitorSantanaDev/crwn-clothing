@@ -15,7 +15,15 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const middlewares = [logger]
 
-const composedEnhancers = compose(applyMiddleware(...middlewares))
+const composeEnhancer =
+  (process.env.NODE_ENV === 'production' &&
+    window &&
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    window.__REDUX_DEVTOOLS_EXTENSION__) ||
+  compose
+
+const composedEnhancers = composeEnhancer(applyMiddleware(...middlewares))
 
 export const store = createStore(persistedReducer, undefined, composedEnhancers)
 

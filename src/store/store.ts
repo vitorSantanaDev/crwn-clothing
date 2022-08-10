@@ -2,21 +2,22 @@ import { compose, createStore, applyMiddleware } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 
 import { rootReducer } from './root.reducer'
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['user']
+  whitelist: ['cart']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const middlewares = [logger]
+const middlewares = [logger, thunk]
 
 const composeEnhancer =
-  (process.env.NODE_ENV === 'production' &&
+  (process.env.NODE_ENV !== 'production' &&
     window &&
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore

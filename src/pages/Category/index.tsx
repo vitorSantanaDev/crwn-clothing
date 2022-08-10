@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { Container, ProductCard } from 'components'
+import { Container, ProductCard, SpinnerLoading } from 'components'
 
-import { categoriesSelector } from 'store'
+import { categoriesSelectors } from 'store'
 import { IProduct } from 'interfaces'
 
 import * as S from './styles'
@@ -15,12 +15,16 @@ export default function Category() {
 
   const { category } = useParams()
 
-  const categories = useSelector(categoriesSelector)
+  const categories = useSelector(categoriesSelectors.selectCategoriesArray)
+  const isLoading = useSelector(categoriesSelectors.selectCategoriesIsLoading)
 
   useEffect(() => {
     if (categories) setProducts(categories[category as string])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categories])
+  }, [categories, category])
+
+  if (isLoading) {
+    return <SpinnerLoading />
+  }
 
   if (products) {
     return (

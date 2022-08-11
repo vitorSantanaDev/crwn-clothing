@@ -13,18 +13,19 @@ import { categoriesActions, userActions } from './store'
 function App() {
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  const changingUserAuthenticationState = () => {
     onAuthStateChangedListiner((user) => {
       if (user) createUserDocumentFromAuth(user)
       dispatch(userActions.setUser(user))
     })
-  }, [dispatch])
+  }
 
-  useEffect(() => {
-    ;(async () => {
-      await categoriesActions.fetchCategoriesAsync(dispatch)
-    })()
-  }, [dispatch])
+  const callingProductCategories = () => {
+    dispatch(categoriesActions.fetchCategoriesStart())
+  }
+
+  useEffect(changingUserAuthenticationState, [dispatch])
+  useEffect(callingProductCategories, [dispatch])
 
   return (
     <Fragment>

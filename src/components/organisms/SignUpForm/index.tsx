@@ -76,6 +76,7 @@ export default function SignUpForm() {
 
       toast.success(successMessages.USER_CREATED_SUCCESSFULLY)
       resetForm({ values: setInitialValuesFields() })
+      window.history.back()
     } catch (err) {
       setLoading(false)
       toast.error(errorMessages.EMAIL_ALREADY_IN_USE)

@@ -3,7 +3,7 @@ const routesName = {
   SHOP: '/shop',
   AUTHENTICATION: '/authentication',
   CHECKOUT: '/checkout',
-  CATEGORY: '/shop/category'
+  CATEGORY: '/category'
 }
 
 export default routesName

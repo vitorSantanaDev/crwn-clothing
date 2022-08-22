@@ -25,6 +25,10 @@ export default function RoutesApp() {
             accessType,
             requirePermission
           }) => {
+            const pathOfTheRoute = parameter?.length
+              ? `${path}/${parameter}`
+              : `${path}`
+
             if (
               !requirePermission &&
               accessType.includes(AccessTypeEnum.PUBLIC)
@@ -32,7 +36,7 @@ export default function RoutesApp() {
               return (
                 <Route
                   key={key}
-                  path={path}
+                  path={pathOfTheRoute}
                   element={
                     <PageComponent includesHeader={header}>
                       {createElement(component)}
@@ -41,14 +45,15 @@ export default function RoutesApp() {
                 />
               )
             } else if (
+              user.user &&
               requirePermission &&
-              !accessType.includes(AccessTypeEnum.PUBLIC) &&
-              user
+              !accessType.includes(AccessTypeEnum.PUBLIC)
             ) {
+              console.log({ user, requirePermission, accessType })
               return (
                 <Route
                   key={key}
-                  path={parameter ? `${path}/${parameter}` : path}
+                  path={pathOfTheRoute}
                   element={
                     <PageComponent includesHeader={header}>
                       {createElement(component)}

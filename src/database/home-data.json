@@ -4,34 +4,34 @@
     "action": "Example",
     "title": "hats",
     "urlImageBackground": "https://i.ibb.co/cvpntL1/hats.png",
-    "route": "/shop/category/hats"
+    "route": "hats"
   },
   {
     "id": "2",
     "action": "Example",
     "title": "jackets",
     "urlImageBackground": "https://i.ibb.co/px2tCc3/jackets.png",
-    "route": "/shop/category/jackets"
+    "route": "jackets"
   },
   {
     "id": "3",
     "action": "Example",
     "title": "sneakers",
     "urlImageBackground": "https://i.ibb.co/0jqHpnp/sneakers.png",
-    "route": "/shop/category/sneakers"
+    "route": "sneakers"
   },
   {
     "id": "4",
     "action": "Example",
     "title": "womens",
     "urlImageBackground": "https://i.ibb.co/GCCdy8t/womens.png",
-    "route": "/shop/category/womens"
+    "route": "womens"
   },
   {
     "id": "5",
     "action": "Example",
     "title": "mens",
     "urlImageBackground": "https://i.ibb.co/R70vBrQ/men.png",
-    "route": "/shop/category/mens"
+    "route": "mens"
   }
 ]

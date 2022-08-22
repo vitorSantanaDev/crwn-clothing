@@ -26,8 +26,8 @@ export const routesData: IRouterData[] = [
   {
     header: true,
     name: 'Shop',
+    parameter: '*',
     component: Shop,
-    parameter: '/*',
     key: routesName.SHOP,
     path: routesName.SHOP,
     requirePermission: false,
@@ -49,7 +49,7 @@ export const routesData: IRouterData[] = [
     parameter: ':category',
     key: routesName.CATEGORY,
     path: routesName.CATEGORY,
-    requirePermission: true,
-    accessType: [AccessTypeEnum.USER]
+    requirePermission: false,
+    accessType: [AccessTypeEnum.PUBLIC, AccessTypeEnum.USER]
   }
 ]

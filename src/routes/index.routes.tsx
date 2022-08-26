@@ -4,13 +4,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import { PageComponent } from 'components'
 
+import { userSelector } from 'store'
 import routesName from './enum.routes'
 import { routesData } from './data.routes'
 
 import { AccessTypeEnum } from './type.routes'
 
 export default function RoutesApp() {
-  const user = useSelector((state) => (state as { user: any }).user)
+  const user = useSelector(userSelector)
 
   return (
     <BrowserRouter>
@@ -45,7 +46,7 @@ export default function RoutesApp() {
                 />
               )
             } else if (
-              user.user &&
+              user &&
               requirePermission &&
               !accessType.includes(AccessTypeEnum.PUBLIC)
             ) {

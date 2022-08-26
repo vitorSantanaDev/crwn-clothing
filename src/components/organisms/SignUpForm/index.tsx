@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react'
 import { UserCredential } from 'firebase/auth'
 import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
 
 import { createUser, createUserDocumentFromAuth } from 'services/firebase'
 
@@ -12,6 +13,7 @@ import { ButtonTypeEnum } from 'components/atoms/ButtonComponent/types'
 import { ButtonComponent, InputComponent, Loading } from 'components/atoms'
 
 import * as S from './styles'
+import { userActions } from 'store'
 
 const fieldsForm = [
   {
@@ -49,6 +51,7 @@ const fieldsForm = [
 ]
 
 export default function SignUpForm() {
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [defaultValueFields] = useState(setInitialValuesFields())
 
@@ -65,13 +68,11 @@ export default function SignUpForm() {
     values: FormikValues,
     { resetForm }: FormikHelpers<FormikValues>
   ) {
-    const { displayName, email, password } = values
-
     try {
-      setLoading(true)
-      const { user } = (await createUser(email, password)) as UserCredential
-      await createUserDocumentFromAuth(user, { displayName })
+      const { displayName, email, password } = values
 
+      setLoading(true)
+      dispatch(userActions.signUpStart(email, password, displayName))
       setLoading(false)
 
       toast.success(successMessages.USER_CREATED_SUCCESSFULLY)

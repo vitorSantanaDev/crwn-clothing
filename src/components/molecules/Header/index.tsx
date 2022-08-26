@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { userActions, userSelector, cartStoreSelectors } from 'store'
-import { signOutUser } from 'services/firebase'
 
 import { CrwnLogo, CartIcon } from 'components/atoms'
 import CartDropDown from '../CartDropDown'
@@ -19,8 +18,7 @@ export default function Header() {
   const dispatch = useDispatch()
 
   async function signOutHandler() {
-    await signOutUser()
-    dispatch(userActions.resetUser())
+    dispatch(userActions.signOutStart())
   }
 
   return (

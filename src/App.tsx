@@ -3,21 +3,13 @@ import { useDispatch } from 'react-redux'
 
 import RoutesApp from 'routes/index.routes'
 
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListiner
-} from 'services/firebase'
-
 import { categoriesActions, userActions } from './store'
 
 function App() {
   const dispatch = useDispatch()
 
   const changingUserAuthenticationState = () => {
-    onAuthStateChangedListiner((user) => {
-      if (user) createUserDocumentFromAuth(user)
-      dispatch(userActions.setUser(user))
-    })
+    dispatch(userActions.checkUserSession())
   }
 
   const callingProductCategories = () => {

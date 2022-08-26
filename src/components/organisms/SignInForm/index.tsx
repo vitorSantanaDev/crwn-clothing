@@ -1,11 +1,14 @@
 import { Fragment, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { sigInWithGooglePopup, sigInAuthUser } from 'services/firebase'
+import { userActions } from 'store'
 
 import { errorMessages } from 'utils'
 import { signInFormValidation } from 'schemas'
+import routesName from 'routes/enum.routes'
 
 import { ButtonComponent, InputComponent, Loading } from 'components/atoms'
 import {
@@ -35,11 +38,16 @@ const fieldsForm = [
 ]
 
 export default function SignInForm() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { user } = useSelector((state) => (state as { user: any }).user)
   const [loading, setLoading] = useState(false)
   const [defaultValueFields] = useState(setInitialValuesFields())
 
-  async function signInWithGoogle() {
-    await sigInWithGooglePopup()
+  function signInWithGoogle() {
+    dispatch(userActions.googleSignInStart())
+    if (!user) return
+    navigate(routesName.HOME)
   }
 
   function setInitialValuesFields() {
@@ -58,13 +66,10 @@ export default function SignInForm() {
     try {
       setLoading(true)
       const { email, password } = values
-
-      await sigInAuthUser(email, password)
-
+      dispatch(userActions.emailSignInStart({ email, password }))
       setLoading(false)
       resetForm({ values: setInitialValuesFields() })
-      window.history.back()
-
+      navigate(routesName.HOME)
       return
     } catch (err) {
       setLoading(false)

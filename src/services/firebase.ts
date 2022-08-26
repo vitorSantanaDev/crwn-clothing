@@ -133,3 +133,16 @@ export async function onAuthStateChangedListiner(
 ) {
   return onAuthStateChanged(auth, callback)
 }
+
+export async function getCurrentUser() {
+  return new Promise((resolve, reject) => {
+    const unsubscriber = onAuthStateChanged(
+      auth,
+      (userAuth: User | null) => {
+        unsubscriber()
+        resolve(userAuth)
+      },
+      reject
+    )
+  })
+}

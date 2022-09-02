@@ -30,7 +30,7 @@ export const ButtonElement = styled.button<ButtonProps>`
     border: 1px solid black;
   }
   &:disabled {
-    cursor: not-allowed;
+    cursor: progress;
 
     &:hover {
       color: white;

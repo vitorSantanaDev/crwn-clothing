@@ -1,3 +1,4 @@
+import { SpinnerContainer } from 'components/atoms/SpinnerLoading/styles'
 import styled from 'styled-components'
 
 export const FormWrapper = styled.div`
@@ -16,4 +17,9 @@ export const FormTitle = styled.span`
 export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+`
+
+export const SpinnerLoading = styled(SpinnerContainer)`
+  width: 30px;
+  height: 30px;
 `

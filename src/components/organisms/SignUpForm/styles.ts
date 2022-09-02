@@ -1,3 +1,4 @@
+import { SpinnerContainer } from 'components/atoms/SpinnerLoading/styles'
 import styled from 'styled-components'
 
 export const FormWrapper = styled.div`
@@ -11,4 +12,9 @@ export const SignUpTitle = styled.h2`
 `
 export const FormTitle = styled.span`
   font-size: 16px;
+`
+
+export const SpinnerLoading = styled(SpinnerContainer)`
+  width: 30px;
+  height: 30px;
 `

@@ -1,16 +1,13 @@
 import { Fragment, useState } from 'react'
-import { UserCredential } from 'firebase/auth'
 import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-
-import { createUser, createUserDocumentFromAuth } from 'services/firebase'
 
 import { registrationFormValidation } from 'schemas'
 import { errorMessages, successMessages } from 'utils'
 
 import { ButtonTypeEnum } from 'components/atoms/ButtonComponent/types'
-import { ButtonComponent, InputComponent, Loading } from 'components/atoms'
+import { ButtonComponent, InputComponent } from 'components/atoms'
 
 import * as S from './styles'
 import { userActions } from 'store'
@@ -106,7 +103,7 @@ export default function SignUpForm() {
             </Fragment>
           ))}
           <ButtonComponent disabled={loading} type={ButtonTypeEnum.SUBMIT}>
-            {loading ? <Loading /> : 'Enviar'}
+            {loading ? <S.SpinnerLoading /> : 'Enviar'}
           </ButtonComponent>
         </Form>
       </Formik>

@@ -101,7 +101,7 @@ export default function SignInForm() {
           ))}
           <S.ButtonsWrapper>
             <ButtonComponent disabled={loading} type={ButtonTypeEnum.SUBMIT}>
-              {loading ? <Loading /> : 'Entrar'}
+              {loading ? <S.SpinnerLoading /> : 'Entrar'}
             </ButtonComponent>
             <ButtonComponent
               disabled={loading}

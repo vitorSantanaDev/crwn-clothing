@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { cartStoreSelectors } from 'store'
 import { IProductCartItem } from 'interfaces'
 
-import { CheckoutItem, Container } from 'components'
+import { CheckoutItem, Container, PaymentForm } from 'components'
 
 import * as S from './styles'
 
@@ -36,6 +36,7 @@ export default function Checkout() {
           })}
         </S.CartItemsWrapper>
         <S.TotalLabel>Total: {priceTotalItems}</S.TotalLabel>
+        <PaymentForm />
       </S.CheckoutPageWrapper>
     </Container>
   )

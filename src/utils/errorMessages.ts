@@ -5,5 +5,6 @@ export const errorMessages = {
     'A senha precisa ter pelo menos um caractere maiusculo, um minúsculo e 1 digíto.',
   PASSWORDS_DO_NOT_MATCH: 'As senhas não conferem.',
   EMAIL_ALREADY_IN_USE: 'E-mail já está em uso.',
-  INVALID_EMAIL_OR_PASSWORD: 'Email ou senha inválida.'
+  INVALID_EMAIL_OR_PASSWORD: 'Email ou senha inválida.',
+  PAYMENT_SUCCESSFULY: 'Pagamento realizado com sucesso!'
 }

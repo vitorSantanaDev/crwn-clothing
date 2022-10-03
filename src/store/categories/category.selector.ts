@@ -1,6 +1,10 @@
 import { createSelector } from 'reselect'
+import { CategoiresStateType } from './category.reducer'
 
-const selectCategoryReducer = (state: any) => state.categories
+import { CategoryMapType } from 'interfaces'
+
+const selectCategoryReducer = (state: any): CategoiresStateType =>
+  state.categories
 
 export const selectCategories = createSelector(
   [selectCategoryReducer],
@@ -17,7 +21,7 @@ export const selectCategoriesArray = createSelector(
       acc[title.toLowerCase()] = items
 
       return acc
-    }, {})
+    }, {} as CategoryMapType)
   }
 )
 

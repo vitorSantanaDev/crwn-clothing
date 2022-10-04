@@ -1,3 +1,5 @@
 export * from './product'
 export * from './shopData'
 export * from './database'
+export * from './category'
+export * from './cart'

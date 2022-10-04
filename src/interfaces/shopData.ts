@@ -7,11 +7,3 @@ export interface IShopData {
     price: number
   }[]
 }
-
-export enum CategoryTypenum {
-  HATS = 'hats',
-  JACKETS = 'jackets',
-  MENS = 'mens',
-  SNEAKERS = 'sneakers',
-  WOMENS = 'womens'
-}

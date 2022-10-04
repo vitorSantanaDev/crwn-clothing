@@ -1,13 +1,34 @@
-import { Action } from 'redux'
 import { CART_ACTIONS_TYPES } from './cart.types'
 
-import { createAction } from 'utils'
-import { IProduct, IProductCartItem } from 'interfaces'
+import { ICategoryItem, CartItem } from 'interfaces'
+
+import { createAction, withMatcher, ActionWithPayload } from 'utils'
+
+type SetIsCartOpenType = ActionWithPayload<
+  CART_ACTIONS_TYPES.SET_CART_IS_OPEN,
+  boolean
+>
+
+type SetCartItemsType = ActionWithPayload<
+  CART_ACTIONS_TYPES.SET_CART_ITEMS,
+  CartItem[]
+>
+
+export const setCartItems = withMatcher(
+  (cartItems: CartItem[]): SetCartItemsType =>
+    createAction(CART_ACTIONS_TYPES.SET_CART_ITEMS, cartItems)
+)
+
+export const setIsCartOpen = withMatcher(
+  (value: boolean): SetIsCartOpenType => {
+    return createAction(CART_ACTIONS_TYPES.SET_CART_IS_OPEN, value)
+  }
+)
 
 function addCartItems(
-  cartItems: IProductCartItem[],
-  productToAdd: IProduct
-): IProductCartItem[] {
+  cartItems: CartItem[],
+  productToAdd: ICategoryItem
+): CartItem[] {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
   )
@@ -22,14 +43,14 @@ function addCartItems(
 }
 
 function removeCartItem(
-  cartItems: IProductCartItem[],
-  cartItemToRemove: IProduct
-): IProductCartItem[] {
+  cartItems: CartItem[],
+  cartItemToRemove: ICategoryItem
+): CartItem[] {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToRemove.id
   )
 
-  if (existingCartItem?.quantity === 1) {
+  if (existingCartItem && existingCartItem.quantity === 1) {
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
   }
 
@@ -41,36 +62,32 @@ function removeCartItem(
 }
 
 function clearCartItem(
-  cartItems: IProductCartItem[],
-  cartItemToRemove: IProduct
-): IProductCartItem[] {
+  cartItems: CartItem[],
+  cartItemToRemove: ICategoryItem
+): CartItem[] {
   return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
 }
 
 export function addItemsToCart(
-  cartItems: IProductCartItem[],
-  productToAdd: IProduct
-): Action {
+  cartItems: CartItem[],
+  productToAdd: ICategoryItem
+) {
   const newCartItems = addCartItems(cartItems, productToAdd)
-  return createAction(CART_ACTIONS_TYPES.SET_CART_ITEMS, newCartItems)
+  return setCartItems(newCartItems)
 }
 
 export function removeItemFromCart(
-  cartItems: IProductCartItem[],
-  productToRemove: IProduct
-): Action {
+  cartItems: CartItem[],
+  productToRemove: ICategoryItem
+) {
   const newCartItems = removeCartItem(cartItems, productToRemove)
-  return createAction(CART_ACTIONS_TYPES.SET_CART_ITEMS, newCartItems)
+  return setCartItems(newCartItems)
 }
 
 export function clearItemFromCart(
-  cartItems: IProductCartItem[],
-  productToRemove: IProduct
-): Action {
+  cartItems: CartItem[],
+  productToRemove: ICategoryItem
+) {
   const newCartItems = clearCartItem(cartItems, productToRemove)
-  return createAction(CART_ACTIONS_TYPES.SET_CART_ITEMS, newCartItems)
-}
-
-export function setIsCartOpen(value: boolean): Action {
-  return createAction(CART_ACTIONS_TYPES.SET_CART_IS_OPEN, value)
+  return setCartItems(newCartItems)
 }
